@@ -21,14 +21,18 @@ generateBtn.addEventListener('click', () => {
   }
 });
 
+
 downloadBtn.addEventListener('click', () => {
   const canvas = document.querySelector('canvas');
   if (canvas) {
-    const dataURL = canvas.toDataURL('image/png');
-    const a = document.createElement('a');
-    a.href = dataURL;
-    a.downloadText = 'QR_Code.png';
-    a.click();
+    canvas.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'QR_Code.png';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
   }
 });
 

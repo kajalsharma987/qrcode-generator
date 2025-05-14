@@ -33,6 +33,15 @@ downloadBtn.addEventListener('click', () => {
       a.click();
       URL.revokeObjectURL(url);
     });
+  } else {
+    const img = document.querySelector('img');
+    if (img) {
+      const url = img.src;
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'QR_Code.png';
+      a.click();
+    }
   }
 });
 
